@@ -58,7 +58,7 @@
                 }
             },
             "language": "javascript",
-            "_id": "_design/reports\n"
+            "_id": "_design/reports"
         },
         {
             "couchapp": {
@@ -602,7 +602,7 @@
                 }
             },
             "language": "javascript",
-            "_id": "_design/eastin\n"
+            "_id": "_design/eastin"
         }
     ]
 }

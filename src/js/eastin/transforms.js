@@ -12,31 +12,22 @@ gpii.ul.api.eastin.transforms.getOptionalIsoCodes = function (isoCodes) {
     return isoCodes.slice(1);
 };
 
-gpii.ul.api.eastin.transforms.transformUnifiedRecord = function (unifiedRecord, rules) {
-    var saiRecords = unifiedRecord.sources.filter(function (sourceRecord) {
-        return sourceRecord.source === "sai";
-    });
-    var saiRecord = saiRecords[0];
-    if (saiRecord.status === "deleted") {
-        var nonDeletedRecord = fluid.find(saiRecords.slice(1), function (saiRecord) {
-            return saiRecord.status !== "deleted" ? saiRecord : undefined;
-        });
-        if (nonDeletedRecord) {
-            saiRecord = nonDeletedRecord;
-        }
-    }
-
-    var combinedRecord = fluid.copy(unifiedRecord);
-    combinedRecord.saiRecord = saiRecord;
+/**
+ *
+ * @param {Object} combinedRecord - A unified record, with its SAI equivalent stashed under `saiRecord`.
+ * @param {Object} rules - Fluid model transformation rules.
+ * @return {Any} - The results of the transformation, typically an {Object}.
+ */
+gpii.ul.api.eastin.transforms.transformUnifiedRecord = function (combinedRecord, rules) {
     var eastinRecord = fluid.model.transformWithRules(combinedRecord, rules);
     return eastinRecord;
 };
 
-gpii.ul.api.eastin.transforms.unifiedToProductDto = function (unifiedRecord) {
+gpii.ul.api.eastin.transforms.toProductDto = function (unifiedRecord) {
     return gpii.ul.api.eastin.transforms.transformUnifiedRecord(unifiedRecord, gpii.ul.api.eastin.transforms.unifiedToProductDto);
 };
 
-gpii.ul.api.eastin.transforms.unifiedToSmallProductDto = function (unifiedRecord) {
+gpii.ul.api.eastin.transforms.toSmallProductDto = function (unifiedRecord) {
     return gpii.ul.api.eastin.transforms.transformUnifiedRecord(unifiedRecord, gpii.ul.api.eastin.transforms.unifiedToSmallProductDto);
 };
 
@@ -54,14 +45,20 @@ gpii.ul.api.eastin.transforms.unifiedToProductDto = {
             inputPath: "isoCodes"
         }
     },
+
+    // ManufacturerCountry
     "CommercialName": "name",
     "ManufacturerCode": "manufacturer.id",
     "ManufacturerOriginalFullName": "manufacturer.name",
-    "LastUpdateDate": "updated",
     "ManufacturerAddress": "manufacturer.address",
     "ManufacturerPostalCode": "manufacturer.postalCode",
     "ManufacturerTown": "manufacturer.cityTown",
-    "ManufacturerCountry": "manufacturer.country",
+    "ManufacturerCountry": {
+        transform: {
+            type: "fluid.transforms.firstValue",
+            values: ["manufacturer.country", { literalValue: "Unknown" }]
+        }
+    },
     "ManufacturerPhone": "manufacturer.phone",
     "ManufacturerEmail": "manufacturer.email",
     "ManufacturerWebSiteUrl": "manufacturer.url",
@@ -69,6 +66,11 @@ gpii.ul.api.eastin.transforms.unifiedToProductDto = {
     "EnglishDescription": "description",
     "OriginalUrl": "saiRecord.sourceUrl",
     "EnglishUrl": "saiRecord.sourceUrl",
+
+    "LastUpdateDate": "updated",
+
+    // We don't track this, so reuse the date of the last update.
+    "InsertDate": "updated",
 
     // Things we don't have, we set to empty or false.
     "IsReviewAllowed": { literalValue: false },

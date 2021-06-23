@@ -135,14 +135,14 @@ fluid.defaults("gpii.ul.api.harness", {
                             content: "%ul-api/node_modules"
                         }
                     }
-                },
-                // TODO: Remove or comment out
-                listeners: {
-                    "onCreate.diagramRoutes": {
-                        funcName: "gpii.ul.api.harness.diagramRoutes",
-                        args: ["{that}"]
-                    }
                 }
+                // TODO: Remove or comment out
+                // listeners: {
+                //     "onCreate.diagramRoutes": {
+                //         funcName: "gpii.ul.api.harness.diagramRoutes",
+                //         args: ["{that}"]
+                //     }
+                // }
             }
         }
     }

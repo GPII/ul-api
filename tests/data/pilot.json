@@ -419,7 +419,8 @@
             "name": "Jaws For Windows",
             "description": "Screen reader software.  Comprises: supports standard Windows office applications, Internet Explorer, Firefox, MSN Messenger, and Adobe Acrobat Reader, Lotus Symphony/Notes and others; outputs to refreshable Braille displays; multilingual synthesizer; supports Internet Explorer including links lists, frames lists, forms mode, reading HTML tables and graphic labels; supports dual monitors; interactive talking installation and basic training tutorial. Options include: standard edition for 32-bit or 64-bit versions of Windows 7 Home Premium, Windows Vista Home Premium, Windows Vista Home Basic and 32-bit Windows XP Home operating systems; professional edition for all 32-bit or 64-bit versions of Windows 7, Windows Vista, and Windows Server 2008 and 32-bit versions of Windows XP and Windows Server 2003. \n  Note: voice synthesizer requires a sound card compatible with the users version of Windows.<br /><br />Price from (&pound;): 659<br /><br /><br /><br />Software<br />Adjust voice pitch: Standard <br />Adjust voice speed: Standard <br />Braille output: Standard <br />CD-Rom; USB Pen; Download: CD-Rom <br />Pronunciation correction: Standard <br />Read text with mouse over: Feature not available <br />Screen Zoom: Feature not available <br />Talking installation: Standard <br />Windows operating system: XP, Vista and 7",
             "manufacturer": {
-                "name": "Freedom Scientific"
+                "name": "Freedom Scientific",
+                "id": 1234
             },
             "isoCodes": [{
                 "Code": "22.39.12",
@@ -1941,6 +1942,142 @@
                 "name": "Weyland-Yutani Corporation"
             },
             "updated": "2017-01-09T13:59:56.721Z"
+        },
+        {
+            "uid": "1421059432806-826608318",
+            "sid": "65",
+            "name": "JAWS",
+            "status": "active",
+            "source": "sai",
+            "sourceData": {
+                "uid": "1421059432806-826608318",
+                "body": "<h2>Product Description:</h2><p>JAWS (Job&nbsp;Access&nbsp;With&nbsp;Speech)&nbsp;provides speech and Braille output for software programs and is designed&nbsp;for computer users whose vision loss prevents them from seeing screen content or navigating with a mouse.</p>\r\n<h2>Main Features:</h2><ul>\r\n\t<li>Two multi-lingual synthesizers: <a href=\"http://ul.gpii.net/content/eloquence\">Eloquence</a> and Vocalizer Expressive.</li>\r\n\t<li>Talking installation.</li>\r\n\t<li>Built-in free DAISY Player and a full set of DAISY-formatted basic training books.</li>\r\n\t<li>Works with Microsoft Office, Internet Explorer, Firefox, and much more.</li>\r\n\t<li>Supports Windows&nbsp;8.1 and Windows 10, including touch screens and gestures</li>\r\n\t<li>Support for MathML content&nbsp;presented in Internet Explorer that is rendered with MathJax.</li>\r\n\t<li>Fast information look-up at your fingertips with Research It.</li>\r\n\t<li>OCR feature provides access to the text of PDF documents.</li>\r\n\t<li>Skim Reading.</li>\r\n\t<li>Provides contracted Braille input from a Braille keyboard.</li>\r\n\t<li>Compatible with <a href=\"https://ul.gpii.net/content/magic\">MAGic</a>&nbsp;screen magnification software, and <a href=\"https://ul.gpii.net/content/openbook\">OpenBook</a>&nbsp;OCR scanning and reading program.</li>\r\n\t<li>JAWS Tandem available for free to help with support and training.</li>\r\n\t<li>Scripting language to customize the user experience on any application.</li>\r\n\t<li>Includes drivers for popular Braille displays.</li>\r\n\t<li>Includes voices for over 30 different languages.</li>\r\n</ul>\r\n<h2>Primary Specifications:</h2><ul dir=\"ltr\">\r\n\t<li>Compatibility:&nbsp;Windows&nbsp;10, Windows 8.1, Windows 7 Service Pack 1, Windows Server&nbsp;2012, and Windows Server 2008.</li>\r\n</ul>\r\n<h2>Options &amp; Accessories:</h2><ul>\r\n\t<li>Optional support for Citrix, Terminal Services, and Remote Desktop.</li>\r\n\t<li>Available Languages include&nbsp;​Brazilian Portuguese,&nbsp;Dutch,&nbsp;English,&nbsp;French,&nbsp;French Canadian,&nbsp;German, or Spanish.</li>\r\n\t<li>Can be combined with the <a href=\"https://www.freedomscientific.com/products/lowvision/pearl/\">PEARL</a> document camera (sold separately) to provide instant portable access to printed material with an array of human-sounding voices.</li>\r\n\t<li>Additional <a href=\"https://support.freedomscientific.com/Content/Documents/ProductFlyers/JAWS-Training-Bundle-Flyer.pdf\">JAWS training bundle</a>, which includes&nbsp;over 50 hours of content, is available.&nbsp;</li>\r\n</ul>\r\n<h2>More Information:</h2><p><a href=\"https://www.freedomscientific.com/products/software/jaws/\">See Manufacturer&#39;s website</a>.</p>\r\n",
+                "needs": [
+                    {
+                        "tid": "3374"
+                    },
+                    {
+                        "tid": " 3442"
+                    },
+                    {
+                        "tid": " 3443"
+                    },
+                    {
+                        "tid": " 3130"
+                    },
+                    {
+                        "tid": " 3163"
+                    },
+                    {
+                        "tid": " 4109"
+                    },
+                    {
+                        "tid": " 3164"
+                    },
+                    {
+                        "tid": " 3946"
+                    },
+                    {
+                        "tid": " 3170"
+                    },
+                    {
+                        "tid": " 217"
+                    },
+                    {
+                        "tid": " 219"
+                    },
+                    {
+                        "tid": " 220"
+                    }
+                ],
+                "product_category": [
+                    {
+                        "tid": "3637"
+                    },
+                    {
+                        "tid": " 4019"
+                    },
+                    {
+                        "tid": " 3786"
+                    },
+                    {
+                        "tid": " 3809"
+                    },
+                    {
+                        "tid": " 4050"
+                    },
+                    {
+                        "tid": " 4262"
+                    },
+                    {
+                        "tid": " 4264"
+                    },
+                    {
+                        "tid": " 3805"
+                    },
+                    {
+                        "tid": " 4048"
+                    },
+                    {
+                        "tid": " 4257"
+                    },
+                    {
+                        "tid": " 4258"
+                    },
+                    {
+                        "tid": " 3641"
+                    },
+                    {
+                        "tid": " 4298"
+                    },
+                    {
+                        "tid": " 3965"
+                    },
+                    {
+                        "tid": " 3971"
+                    },
+                    {
+                        "tid": " 4300"
+                    },
+                    {
+                        "tid": " 4303"
+                    },
+                    {
+                        "tid": " 3652"
+                    },
+                    {
+                        "tid": " 3647"
+                    },
+                    {
+                        "tid": " 4337"
+                    },
+                    {
+                        "tid": " 4338"
+                    }
+                ],
+                "product_image": {
+                    "fid": "10855",
+                    "filename": "jaws-product-image.jpg",
+                    "uri": "public://uploads/products/images/node/65/jaws-product-image.jpg",
+                    "alt": "Computer monitor on a stand with display showing the JAWS logo against a white background with the software box standing next to it.",
+                    "filemime": "image/jpeg",
+                    "filesize": "85605",
+                    "status": "1",
+                    "timestamp": "1556562437",
+                    "origname": "jaws-product-image.jpg"
+                },
+                "title": "JAWS",
+                "nid": "65",
+                "format": "filtered_html",
+                "ul_status": "active",
+                "summary": "<p>A screen reader for software programs developed for computer users whose vision loss prevents them from seeing screen content or navigating with a mouse.</p>\r\n"
+            },
+            "description": "<p>JAWS (Job&nbsp;Access&nbsp;With&nbsp;Speech)&nbsp;provides speech and Braille output for software programs and is designed&nbsp;for computer users whose vision loss prevents them from seeing screen content or navigating with a mouse.</p>\r\n<h4>Main Features:</h4><ul>\r\n\t<li>Two multi-lingual synthesizers: <a href=\"http://ul.gpii.net/content/eloquence\">Eloquence</a> and Vocalizer Expressive.</li>\r\n\t<li>Talking installation.</li>\r\n\t<li>Built-in free DAISY Player and a full set of DAISY-formatted basic training books.</li>\r\n\t<li>Works with Microsoft Office, Internet Explorer, Firefox, and much more.</li>\r\n\t<li>Supports Windows&nbsp;8.1 and Windows 10, including touch screens and gestures</li>\r\n\t<li>Support for MathML content&nbsp;presented in Internet Explorer that is rendered with MathJax.</li>\r\n\t<li>Fast information look-up at your fingertips with Research It.</li>\r\n\t<li>OCR feature provides access to the text of PDF documents.</li>\r\n\t<li>Skim Reading.</li>\r\n\t<li>Provides contracted Braille input from a Braille keyboard.</li>\r\n\t<li>Compatible with <a href=\"https://ul.gpii.net/content/magic\">MAGic</a>&nbsp;screen magnification software, and <a href=\"https://ul.gpii.net/content/openbook\">OpenBook</a>&nbsp;OCR scanning and reading program.</li>\r\n\t<li>JAWS Tandem available for free to help with support and training.</li>\r\n\t<li>Scripting language to customize the user experience on any application.</li>\r\n\t<li>Includes drivers for popular Braille displays.</li>\r\n\t<li>Includes voices for over 30 different languages.</li>\r\n</ul>\r\n<h4>Primary Specifications:</h4><ul dir=\"ltr\">\r\n\t<li>Compatibility:&nbsp;Windows&nbsp;10, Windows 8.1, Windows 7 Service Pack 1, Windows Server&nbsp;2012, and Windows Server 2008.</li>\r\n</ul>\r\n<h4>Options &amp; Accessories:</h4><ul>\r\n\t<li>Optional support for Citrix, Terminal Services, and Remote Desktop.</li>\r\n\t<li>Available Languages include&nbsp;​Brazilian Portuguese,&nbsp;Dutch,&nbsp;English,&nbsp;French,&nbsp;French Canadian,&nbsp;German, or Spanish.</li>\r\n\t<li>Can be combined with the <a href=\"https://www.freedomscientific.com/products/lowvision/pearl/\">PEARL</a> document camera (sold separately) to provide instant portable access to printed material with an array of human-sounding voices.</li>\r\n\t<li>Additional <a href=\"https://support.freedomscientific.com/Content/Documents/ProductFlyers/JAWS-Training-Bundle-Flyer.pdf\">JAWS training bundle</a>, which includes&nbsp;over 50 hours of content, is available.&nbsp;</li>\r\n</ul>\r\n<h4>More Information:</h4><p><a href=\"https://www.freedomscientific.com/products/software/jaws/\">See Manufacturer&#39;s website</a>.</p>\r\n",
+            "manufacturer": {
+                "name": "Unknown",
+                "id": 1234
+            },
+            "updated": "2019-12-11T12:36:28.637Z"
         }
     ]
 }

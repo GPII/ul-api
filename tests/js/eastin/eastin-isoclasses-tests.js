@@ -1,5 +1,4 @@
 /* eslint-env node */
-/* Tests for the endpoints that allow our data to be included in EASTIN federated searches. */
 "use strict";
 var fluid = require("infusion");
 var gpii = fluid.registerNamespace("gpii");
@@ -10,10 +9,9 @@ require("../../../index");
 
 gpii.ul.api.loadTestingSupport();
 
-fluid.registerNamespace("gpii.tests.ul.api.eastin");
+fluid.registerNamespace("gpii.tests.ul.api.eastin.isoClasses");
 
-
-fluid.defaults("gpii.tests.ul.api.eastin.caseHolder", {
+fluid.defaults("gpii.tests.ul.api.eastin.isoClasses.caseHolder", {
     gradeNames: ["gpii.test.ul.api.caseHolder"],
     rawModules: [
         {
@@ -28,7 +26,7 @@ fluid.defaults("gpii.tests.ul.api.eastin.caseHolder", {
                         },
                         {
                             event:    "{countRequest}.events.onComplete",
-                            listener: "gpii.tests.ul.api.eastin.checkProductCountResults",
+                            listener: "gpii.tests.ul.api.eastin.isoClasses.checkProductCountResults",
                             args:     ["{countRequest}.nativeResponse", "{arguments}.0", true, false] // response, body, hasResults, isError
                         }
                     ]
@@ -42,7 +40,7 @@ fluid.defaults("gpii.tests.ul.api.eastin.caseHolder", {
                         },
                         {
                             event:    "{countNoResultsRequest}.events.onComplete",
-                            listener: "gpii.tests.ul.api.eastin.checkProductCountResults",
+                            listener: "gpii.tests.ul.api.eastin.isoClasses.checkProductCountResults",
                             args:     ["{countNoResultsRequest}.nativeResponse", "{arguments}.0", false, false] // response, body, hasResults, isError
                         }
                     ]
@@ -56,7 +54,7 @@ fluid.defaults("gpii.tests.ul.api.eastin.caseHolder", {
                         },
                         {
                             event:    "{countBadRequest}.events.onComplete",
-                            listener: "gpii.tests.ul.api.eastin.checkProductCountResults",
+                            listener: "gpii.tests.ul.api.eastin.isoClasses.checkProductCountResults",
                             args:     ["{countBadRequest}.nativeResponse", "{arguments}.0", false, true] // response, body, hasResults, isError
                         }
                     ]
@@ -86,7 +84,7 @@ fluid.defaults("gpii.tests.ul.api.eastin.caseHolder", {
     }
 });
 
-gpii.tests.ul.api.eastin.checkProductCountResults = function (response, body, hasResults, isError) {
+gpii.tests.ul.api.eastin.isoClasses.checkProductCountResults = function (response, body, hasResults, isError) {
     if (isError) {
         jqUnit.assertTrue("The response code should not indicate a successful response.", response.statusCode !== 200);
     }
@@ -109,16 +107,16 @@ gpii.tests.ul.api.eastin.checkProductCountResults = function (response, body, ha
     }
 };
 
-fluid.defaults("gpii.tests.ul.api.eastin.environment", {
+fluid.defaults("gpii.tests.ul.api.eastin.isoClasses.environment", {
     gradeNames: ["gpii.test.ul.api.testEnvironment"],
     ports: {
         api:    9776
     },
     components: {
         testCaseHolder: {
-            type: "gpii.tests.ul.api.eastin.caseHolder"
+            type: "gpii.tests.ul.api.eastin.isoClasses.caseHolder"
         }
     }
 });
 
-fluid.test.runTests("gpii.tests.ul.api.eastin.environment");
+fluid.test.runTests("gpii.tests.ul.api.eastin.isoClasses.environment");

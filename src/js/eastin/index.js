@@ -4,7 +4,7 @@ var fluid = require("infusion");
 // require("./find-small-actors");
 // require("./find-small-associateinfos");
 require("./isoclasses");
-// require("./product");
+require("./products");
 
 fluid.defaults("gpii.ul.api.eastin", {
     gradeNames: ["gpii.express.router"],
@@ -13,7 +13,7 @@ fluid.defaults("gpii.ul.api.eastin", {
         // Batch methods
         isoclasses: {
             type: "gpii.ul.api.eastin.isoclasses"
-        }
+        },
         //
         // // Live methods
         // findSmallActors: {
@@ -23,8 +23,8 @@ fluid.defaults("gpii.ul.api.eastin", {
         //     type: "gpii.ul.api.eastin.associatedinfos"
         //
         // },
-        // product: {
-        //     type: "gpii.ul.api.eastin.product"
-        // }
+        products: {
+            type: "gpii.ul.api.eastin.products"
+        }
     }
 });

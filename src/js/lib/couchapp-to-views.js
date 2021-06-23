@@ -39,7 +39,7 @@ gpii.ul.api.couchapp.converter.convertToViews = function (that) {
             singleViewDef.language = "javascript";
 
             var _id = fs.readFileSync(idFilePath, { encoding: "utf8"});
-            singleViewDef._id = _id;
+            singleViewDef._id = _id.trim();
 
             allViews.docs.push(singleViewDef);
         }
