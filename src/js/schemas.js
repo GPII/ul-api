@@ -278,7 +278,16 @@
                 },
                 "additionalProperties": false
             }
-        }
+        },
+        "created": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date at which the record was created.",
+            "errors": {
+                "format": "You must provide a valid date.",
+                "type": "You must provide a valid date."
+            }
+        },
     };
 
     fluid.registerNamespace("gpii.ul.api.schemas.required");

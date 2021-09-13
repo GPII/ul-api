@@ -26,6 +26,7 @@ fields:
 | `source` (required)       | The source of this record.  If the record is provided by a source database, this field will be set to a unique string identifying the source.  If this record is unique to the Unified Listing, this field will be set to "unified". |
 | `status` (required)       | The status of this record.  Current supported values are listed below under ["status"](#statuses). |
 | `uid` (required)          | The Universal ID ("uid") is the ID of the "unified" record for a given product.  "Source" products use this field to indicate which "unified" record they are associated with (if any). |
+| `created`                 | The date at which the record was created (required). |
 | `updated` (required)      | The date at which the record was last updated. |
 | `language`                | The language used in the text of this record, expressed using a two letter language, code, an underscore, and a two letter country code, as in `en_us` or `it_it`.  If this is not specified, `en_us` is assumed. |
 | `isoCodes`                | One or more [ISO 9999](https://www.iso.org/standard/60547.html) codes indicating the category of assistive product. |
@@ -120,6 +121,7 @@ Here is an example JSON representation of a source record with all fields:
             "SimilarityLevel": 0
             }
         },
+        "created": "2011-09-02T12:34:00+02:00"
         "updated": "2012-10-02T15:24:00+02:00"
     }
 
@@ -159,6 +161,7 @@ Here is an example of a full "unified" record in JSON format, as might be return
         "status": "active",
         "language: "en_us",
         "sources": [ "siva:2345" ],
+        "created": "2010-06-15T13:14:15Z"
         "updated": "2014-11-30T22:04:15Z"
     }
 

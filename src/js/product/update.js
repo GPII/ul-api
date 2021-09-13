@@ -35,6 +35,10 @@ gpii.ul.api.product.update.handler.processReadResponse = function (that, couchRe
     }
     else if (couchResponse.rows.length === 0) {
         that.statusCode = 201;
+        if (!suppliedRecord.created) {
+            suppliedRecord.created = (new Date()).toISOString();
+        };
+
         that.productPoster.set({}, suppliedRecord).then(that.processWriteResponse, that.handleError);
     }
     else if (couchResponse.rows.length === 1) {
@@ -181,6 +185,7 @@ fluid.defaults("gpii.ul.api.product.update", {
                         "manufacturer": gpii.ul.api.schemas.required.product.manufacturer,
                         "status": gpii.ul.api.schemas.required.product.status,
                         // Optional fields
+                        "created": gpii.ul.api.schemas.product.created,
                         "uid": gpii.ul.api.schemas.product.uid,
                         "sourceData": gpii.ul.api.schemas.product.sourceData,
                         "sourceUrl": gpii.ul.api.schemas.product.sourceUrl,

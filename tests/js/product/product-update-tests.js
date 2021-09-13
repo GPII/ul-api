@@ -11,12 +11,15 @@ gpii.ul.api.loadTestingSupport();
 
 fluid.registerNamespace("gpii.tests.ul.api.product.updates");
 
-gpii.tests.ul.api.product.updates.verifyRecordUpdated = function (expectedRecord, actualRecord) {
+gpii.tests.ul.api.product.updates.verifyRecordCreated = function (expectedRecord, actualRecord) {
     jqUnit.assertLeftHand("The record should have been updated...", expectedRecord, actualRecord);
 
     var fiveMinutesAgo = new Date(Date.now() - 300000);
     var dateUpdated = new Date(actualRecord.updated);
     jqUnit.assertTrue("The record should have been flagged as having been updated in the last five minutes", dateUpdated > fiveMinutesAgo);
+
+    var dateCreated = new Date(actualRecord.updated);
+    jqUnit.assertTrue("The record should have been flagged as having been created in the last five minutes", dateCreated > fiveMinutesAgo);
 };
 
 fluid.defaults("gpii.tests.ul.api.product.post.request", {
@@ -70,7 +73,7 @@ gpii.tests.ul.api.product.post.commonTests = [
         ]
     },
     {
-        name: "Update a single record...",
+        name: "Create a single record...",
         type: "test",
         sequence: [
             {
@@ -89,7 +92,7 @@ gpii.tests.ul.api.product.post.commonTests = [
             },
             {
                 event:    "{validRecordVerify}.events.onComplete",
-                listener: "gpii.tests.ul.api.product.updates.verifyRecordUpdated",
+                listener: "gpii.tests.ul.api.product.updates.verifyRecordCreated",
                 args:     ["{that}.options.inputs.validNewRecord", "@expand:JSON.parse({arguments}.0)"] // expectedRecord, actualRecord
             },
             {
@@ -140,6 +143,7 @@ fluid.defaults("gpii.tests.ul.api.product.post.caseHolder", {
             source: "~existing",
             status: "active",
             uid: "1421059432806-826608318",
+            created: "2007-01-03T02:08:35.699Z",
             updated: "2007-01-03T02:08:35.699Z"
         },
         validNewRecord: {
