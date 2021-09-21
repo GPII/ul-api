@@ -5,6 +5,7 @@ var fs = require("fs");
 var docs = [];
 
 for (var a = 0; a < 500; a++) {
+    var createdDate = (new Date()).toISOString();
     docs.push({
         "description": "A 'whetstone' record for use in testing our multi-request strategy for larger record sets.",
         "manufacturer": {
@@ -15,7 +16,8 @@ for (var a = 0; a < 500; a++) {
         "sid": "whetstone-" + a,
         "source": "unified",
         "status": "new",
-        "updated": (new Date()).toISOString()
+        "created": createdDate,
+        "updated": createdDate
     });
 }
 

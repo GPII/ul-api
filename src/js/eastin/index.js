@@ -14,15 +14,15 @@ fluid.defaults("gpii.ul.api.eastin", {
         isoclasses: {
             type: "gpii.ul.api.eastin.isoclasses"
         },
-        //
-        // // Live methods
-        // findSmallActors: {
-        //     type: "gpii.ul.api.eastin.actors"
-        // },
+
+        // Live methods
         associatedInfo: {
             type: "gpii.ul.api.eastin.associatedInfo"
 
         },
+        // findSmallActors: {
+        //     type: "gpii.ul.api.eastin.actors"
+        // },
         products: {
             type: "gpii.ul.api.eastin.products"
         }

@@ -601,7 +601,7 @@
         {
             "views": {
                 "byisocode": {
-                    "map": "function (doc) {\n    \"use strict\";\n    if (doc.source === \"unified\" && doc.isoCodes && doc.isoCodes.length > 0)  {\n        for (var index = 0; index < doc.isoCodes.length; index ++) {\n            var isoCodeDef = doc.isoCodes[index];\n            var code = isoCodeDef.Code && isoCodeDef.Code.split(\".\").join(\"\");\n\n            emit(code, doc);\n        }\n    }\n}\n"
+                    "map": "function (doc) {\n    \"use strict\";\n    if (doc.source === \"unified\" && doc.isoCodes && doc.isoCodes.length > 0)  {\n        for (var index = 0; index < doc.isoCodes.length; index ++) {\n            var isoCodeDef = doc.isoCodes[index];\n            if (isoCodeDef.Code) {\n                var code = isoCodeDef.Code && isoCodeDef.Code.split(\".\").join(\"\");\n                emit(code, doc);\n            }\n        }\n    }\n}\n"
                 }
             },
             "language": "javascript",

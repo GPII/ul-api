@@ -4,4 +4,5 @@
 
 require("./eastin-associatedinfo-tests");
 require("./eastin-isoclasses-tests");
-require("./eastin-products-tests");
+require("./eastin-products-product-tests");
+require("./eastin-products-search-tests");

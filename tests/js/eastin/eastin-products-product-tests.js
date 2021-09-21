@@ -5,6 +5,7 @@ var gpii = fluid.registerNamespace("gpii");
 var jqUnit = require("node-jqunit");
 
 require("../../../index");
+require("./lib/utils");
 
 gpii.ul.api.loadTestingSupport();
 
@@ -13,7 +14,7 @@ fluid.registerNamespace("gpii.tests.ul.api.eastin.products");
 fluid.defaults("gpii.tests.ul.api.eastin.products.caseHolder", {
     gradeNames: ["gpii.test.ul.api.caseHolder"],
     rawModules: [        {
-        name: "Testing EASTIN /products endpoint.",
+        name: "Testing EASTIN /products/:productCode endpoint.",
         tests: [
             {
                 name: "Retrieve an existing record using a product code.",
@@ -90,21 +91,12 @@ gpii.tests.ul.api.eastin.products.checkResults = function (response, body, isErr
         jqUnit.assertTrue("The response code should indicate an error.", response.statusCode !== 200);
     }
     else {
-        var requiredFields = [
-            "ProductCode", "IsoCodePrimary", "CommercialName", "ManufacturerCode",
-            "ManufacturerOriginalFullName", "InsertDate", "LastUpdateDate", "IsReviewAllowed",
-            "ManufacturerCountry"
-        ];
-        jqUnit.expect(requiredFields.length + 1);
-
         jqUnit.assertEquals("The response code should indicate success.", 200, response.statusCode);
 
         try {
             var bodyAsJson = JSON.parse(body);
 
-            fluid.each(requiredFields, function (fieldKey) {
-                jqUnit.assertTrue("There should be a value for field '" + fieldKey + "'.", fluid.get(bodyAsJson, fieldKey) !== undefined);
-            });
+            gpii.test.ul.api.eastin.checkRequiredFields(bodyAsJson);
         }
         catch (error) {
             jqUnit.fail("The response body should have been a JSON-parseable string.");

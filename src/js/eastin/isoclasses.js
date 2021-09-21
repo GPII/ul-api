@@ -34,13 +34,10 @@ fluid.defaults("gpii.ul.api.eastin.isoclasses.productCount.handler", {
                 url: {
                     expander: {
                         funcName: "fluid.stringTemplate",
-                        args: ["%baseUrl/_design/eastin/_view/byisocode?key=\"%key\"", { baseUrl: "{gpii.ul.api}.options.urls.ulDb" }]
+                        args:    ["%baseUrl%viewPath", { baseUrl: "{gpii.ul.api}.options.urls.ulDb", viewPath: "/_design/eastin/_view/byisocode?key=\"%key\""}]
                     }
                 },
-                termMap: {
-                    "key":      "%key"
-                },
-
+                termMap: { key: "%key" },
                 listeners: {
                     "onRead.handleViewResponse": {
                         func: "{gpii.ul.api.eastin.isoclasses.productCount.handler}.handleViewResponse",

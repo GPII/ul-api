@@ -10,6 +10,7 @@
             "manufacturer": {
                 "name": "sample manufacturer 1"
             },
+            "created": "2015-01-01",
             "updated": "2015-01-01"
         },
         {
@@ -22,6 +23,7 @@
             "manufacturer": {
                 "name": "sample manufacturer 1"
             },
+            "created": "2015-01-01",
             "updated": "2015-01-01"
         }
     ]
