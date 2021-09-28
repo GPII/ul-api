@@ -211,6 +211,25 @@
                         "type": "The manufacturer's URL  must be a string.",
                         "minLength": "The manufacturer's URL must be a valid URL."
                     }
+                },
+                "created": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "The date at which the manufacturer's record was first added.",
+                    "errors": {
+                        "format": "You must provide a valid date.",
+                        "type": "You must provide a valid date."
+                    }
+
+                },
+                "updated": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "The date at which the manufacturer's record was last updated.",
+                    "errors": {
+                        "format": "You must provide a valid date.",
+                        "type": "You must provide a valid date."
+                    }
                 }
             }
         },
