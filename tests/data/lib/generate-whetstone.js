@@ -6,14 +6,15 @@ var docs = [];
 
 for (var a = 0; a < 500; a++) {
     var createdDate = (new Date()).toISOString();
+    var numberWithZeroes = a.toString().padStart(3, "0");
     docs.push({
         "description": "A 'whetstone' record for use in testing our multi-request strategy for larger record sets.",
         "manufacturer": {
             "name": "Acme, Inc."
         },
-        "name": "Whetstone " + a,
-        "uid": "whetstone-" + a,
-        "sid": "whetstone-" + a,
+        "name": "Whetstone " + numberWithZeroes,
+        "uid": "whetstone-" + numberWithZeroes,
+        "sid": "whetstone-" + numberWithZeroes,
         "source": "unified",
         "status": "new",
         "created": createdDate,
