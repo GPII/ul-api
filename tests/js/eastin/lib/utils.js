@@ -6,8 +6,8 @@ var jqUnit = require("node-jqunit");
 
 fluid.registerNamespace("gpii.test.ul.api.eastin");
 
-gpii.test.ul.api.eastin.checkRequiredFields = function (singleRecord) {
-    var requiredFields = [
+gpii.test.ul.api.eastin.checkRequiredFields = function (singleRecord, requiredFields) {
+    requiredFields = requiredFields || [
         "ProductCode", "CommercialName", "ManufacturerOriginalFullName", "InsertDate", "LastUpdateDate"
     ];
     var missingFields = [];

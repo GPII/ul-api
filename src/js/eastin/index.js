@@ -2,6 +2,7 @@
 var fluid = require("infusion");
 
 // require("./find-small-actors");
+require("./actors");
 require("./associated-info");
 require("./isoclasses");
 require("./products");
@@ -20,9 +21,9 @@ fluid.defaults("gpii.ul.api.eastin", {
             type: "gpii.ul.api.eastin.associatedInfo"
 
         },
-        // findSmallActors: {
-        //     type: "gpii.ul.api.eastin.actors"
-        // },
+        actors: {
+            type: "gpii.ul.api.eastin.actors"
+        },
         products: {
             type: "gpii.ul.api.eastin.products"
         }

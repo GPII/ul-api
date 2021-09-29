@@ -54,7 +54,7 @@ fluid.defaults("gpii.tests.ul.api.eastin.products.search.caseHolder", {
             },
 
             {
-                name: "Search by product name, no results.",
+                name: "Search by ISO code, no results.",
                 type: "test",
                 sequence: [
                     {
@@ -70,7 +70,7 @@ fluid.defaults("gpii.tests.ul.api.eastin.products.search.caseHolder", {
             },
 
             {
-                name: "Search by product name, with results.",
+                name: "Search by ISO code, with results.",
                 type: "test",
                 sequence: [
                     {

@@ -187,7 +187,7 @@ table describes the available fields and how they are to be used.
 | Field             | Description |
 | ----------------- | ----------- |
 | `name` (required) | The name of the manufacturer. |
-| `ID`              | The unique identifier for the manufacturer within the UL API. |
+| `id`              | The unique identifier for the manufacturer within the UL API. |
 | `address`         | The street address of the manufacturer (may also be used for the complete address). |
 | `postalCode`      | The postal code (ZIP code, etc.) of the manufacturer. |
 | `cityTown`        | The city/town in which the manufacturer is located. |
@@ -196,6 +196,8 @@ table describes the available fields and how they are to be used.
 | `phone`           | The phone number of the manufacturer. |
 | `email`           | An email address at which the manufacturer can be contacted. |
 | `url`             | The manufacturer's web site. |
+| `created`         | The date the manufacturer record was created. |
+| `updated`         | The date the manufacturer record was last updated. |
 
  A JSON representation of a manufacturer with all fields looks as follows:
 

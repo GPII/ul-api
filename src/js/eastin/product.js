@@ -209,5 +209,3 @@ fluid.defaults("gpii.ul.api.eastin.product", {
     path: "/:productCode",
     handlerGrades: ["gpii.ul.api.eastin.product.handler"]
 });
-
-// TODO: Use the same view that GET /product uses and put it through a different transform.
