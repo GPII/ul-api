@@ -64,8 +64,13 @@ gpii.ul.api.eastin.products.find.handler.handleRequest = function (that) {
 // For commercial name and manufacturer, we use crude pattern matching without any kind of stemming.
 //
 // Date matching is not inclusive, i.e. only records create after the minimum and before the max are returned.
-gpii.ul.api.eastin.products.find.handler.generateFilterFunction = function (params) {
+gpii.ul.api.eastin.products.find.handler.generateFilterFunction = function (that, params) {
     return function (singleRecord) {
+        // Hide unpublished and deleted records from the search results.
+        if (that.options.statusesToHide.indexOf(singleRecord.status) !== -1) {
+            return false;
+        }
+
         if (params.isoCodes) {
             var hasMatchingIsoCode = fluid.find(params.isoCodes, function (isoCodeString) {
                 if (singleRecord.IsoCodePrimary === isoCodeString || (singleRecord.IsoCodesOptional && singleRecord.IsoCodesOptional.indexOf(isoCodeString) !== -1)) {
@@ -123,7 +128,7 @@ gpii.ul.api.eastin.products.find.handler.handleViewResponse = function (that, re
 
     // Filter by search parameters if there are any.
     var params = fluid.get(that, "options.request.body.params");
-    var filteredItems = params ? items.filter(gpii.ul.api.eastin.products.find.handler.generateFilterFunction(params)) : items;
+    var filteredItems = params ? items.filter(gpii.ul.api.eastin.products.find.handler.generateFilterFunction(that, params)) : items;
 
     that.sendResponse(200, {
         apiVersion: 1.0,
@@ -135,6 +140,7 @@ gpii.ul.api.eastin.products.find.handler.handleViewResponse = function (that, re
 
 fluid.defaults("gpii.ul.api.eastin.products.find.handler", {
     gradeNames: ["gpii.express.handler"],
+    statusesToHide: ["deleted", "new"],
     invokers: {
         // Return a 404 and a null object for all attempts to get detailed associated info, as we have none.
         handleRequest: {
