@@ -170,7 +170,7 @@ fluid.defaults("gpii.tests.ul.api.products.caseHolder", {
             },
             products: [{
                 "uid": "futureKind",
-                "status": "new",
+                "status": "active",
                 "source": "unified",
                 "sid": "futureKind",
                 "name": "A record ahead of its time.",

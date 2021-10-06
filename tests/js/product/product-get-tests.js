@@ -385,7 +385,7 @@ fluid.defaults("gpii.tests.ul.api.product.get.caseHolder", {
         },
         existing: {
             "uid":          "unifiedNewer",
-            "status":       "new",
+            "status":       "active",
             "source":       "unified",
             "sid":          "unifiedNewer",
             "name":         "sample product 1",
@@ -396,7 +396,7 @@ fluid.defaults("gpii.tests.ul.api.product.get.caseHolder", {
         },
         unified: {
             "uid":          "unifiedNewer",
-            "status":       "new",
+            "status":       "active",
             "source":       "unified",
             "sid":          "unifiedNewer",
             "name":         "sample product 1",
@@ -407,7 +407,7 @@ fluid.defaults("gpii.tests.ul.api.product.get.caseHolder", {
         },
         unifiedSourcesAnonymous: {
             "uid":          "unifiedNewer",
-            "status":       "new",
+            "status":       "active",
             "source":       "unified",
             "sid":          "unifiedNewer",
             "name":         "sample product 1",
@@ -418,7 +418,7 @@ fluid.defaults("gpii.tests.ul.api.product.get.caseHolder", {
         },
         unifiedSourcesLoggedIn: {
             "uid":          "unifiedNewer",
-            "status":       "new",
+            "status":       "active",
             "source":       "unified",
             "sid":          "unifiedNewer",
             "name":         "sample product 1",
@@ -428,7 +428,7 @@ fluid.defaults("gpii.tests.ul.api.product.get.caseHolder", {
             "sources": [
                 {
                     "uid":          "unifiedNewer",
-                    "status":       "new",
+                    "status":       "active",
                     "source":       "~existing",
                     "sid":          "contrib1",
                     "name":         "sample product 1",
@@ -453,7 +453,7 @@ fluid.defaults("gpii.tests.ul.api.product.get.caseHolder", {
         source:  {
             "uid":          "unifiedNewer",
             "source":       "~existing",
-            "status":       "new",
+            "status":       "active",
             "sid":          "contrib1",
             "name":         "sample product 1",
             "description":  "sample description 1",

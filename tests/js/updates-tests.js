@@ -25,7 +25,7 @@ fluid.defaults("gpii.tests.ul.api.updates.caseHolder", {
                 {
                     "uid": "unifiedNewer",
                     "source": "unified",
-                    "status": "new",
+                    "status": "active",
                     "sid": "unifiedNewer",
                     "name": "sample product 1",
                     "description": "sample description 1",
@@ -36,7 +36,7 @@ fluid.defaults("gpii.tests.ul.api.updates.caseHolder", {
                     "sources": [
                         {
                             "uid": "unifiedNewer",
-                            "status": "new",
+                            "status": "active",
                             "source": "~existing",
                             "sid": "contrib1",
                             "name": "sample product 1",
@@ -71,7 +71,7 @@ fluid.defaults("gpii.tests.ul.api.updates.caseHolder", {
                 {
                     "uid": "unifiedNewer",
                     "source": "unified",
-                    "status": "new",
+                    "status": "active",
                     "sid": "unifiedNewer",
                     "name": "sample product 1",
                     "description": "sample description 1",
@@ -82,7 +82,7 @@ fluid.defaults("gpii.tests.ul.api.updates.caseHolder", {
                     "sources": [
                         {
                             "uid": "unifiedNewer",
-                            "status": "new",
+                            "status": "active",
                             "source": "~existing",
                             "sid": "contrib1",
                             "name": "sample product 1",
@@ -119,7 +119,7 @@ fluid.defaults("gpii.tests.ul.api.updates.caseHolder", {
                     "uid": "unifiedOlder",
                     "source": "unified",
                     "sid": "unifiedOlder",
-                    "status": "new",
+                    "status": "active",
                     "name": "sample product 2",
                     "description": "sample description 2",
                     "updated": "2013-01-01",
@@ -130,7 +130,7 @@ fluid.defaults("gpii.tests.ul.api.updates.caseHolder", {
                         {
                             "uid": "unifiedOlder",
                             "source": "~existing",
-                            "status": "new",
+                            "status": "active",
                             "sid": "contrib2",
                             "name": "sample product 2",
                             "description": "sample description 2",
