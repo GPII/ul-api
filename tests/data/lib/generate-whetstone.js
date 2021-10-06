@@ -16,7 +16,7 @@ for (var a = 0; a < 500; a++) {
         "uid": "whetstone-" + numberWithZeroes,
         "sid": "whetstone-" + numberWithZeroes,
         "source": "unified",
-        "status": "new",
+        "status": "active",
         "created": createdDate,
         "updated": createdDate
     });

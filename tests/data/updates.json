@@ -2,7 +2,7 @@
     "docs": [
         {
             "uid": "unifiedNewer",
-            "status": "new",
+            "status": "active",
             "source": "unified",
             "sid": "unifiedNewer",
             "name": "sample product 1",
@@ -14,7 +14,7 @@
         },
         {
             "uid": "futureKind",
-            "status": "new",
+            "status": "active",
             "source": "unified",
             "sid": "futureKind",
             "name": "A record ahead of its time.",
@@ -38,7 +38,7 @@
         },
         {
             "uid": "unifiedNewer",
-            "status": "new",
+            "status": "active",
             "source": "~existing",
             "sid": "contrib1",
             "name": "sample product 1",
@@ -62,7 +62,7 @@
         },
         {
             "uid": "unifiedOlder",
-            "status": "new",
+            "status": "active",
             "source": "unified",
             "sid": "unifiedOlder",
             "name": "sample product 2",
@@ -74,7 +74,7 @@
         },
         {
             "uid": "unifiedOlder",
-            "status": "new",
+            "status": "active",
             "source": "~existing",
             "sid": "contrib2",
             "name": "sample product 2",
@@ -86,7 +86,7 @@
         },
         {
             "uid": "unifiedOlder",
-            "status": "new",
+            "status": "active",
             "source": "slashed/source",
             "sid": "slashed/sid",
             "name": "slashed",
