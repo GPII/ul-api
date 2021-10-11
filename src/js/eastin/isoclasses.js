@@ -56,7 +56,8 @@ fluid.defaults("gpii.ul.api.eastin.isoclasses.productCount.handler", {
 
 gpii.ul.api.eastin.isoclasses.productCount.handler.handleRequest = function (that) {
     if (that.options.request.query.iso) {
-        that.viewReader.get({ key: that.options.request.query.iso });
+        var sanitisedIsoCode = that.options.request.query.replace(/\./g, "");
+        that.viewReader.get({ key: sanitisedIsoCode });
     }
     else {
         that.options.next({ isError: true, statusCode: 400, message: "You must supply an 'iso' query variable to use this endpoint."});
