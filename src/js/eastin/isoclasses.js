@@ -56,7 +56,7 @@ fluid.defaults("gpii.ul.api.eastin.isoclasses.productCount.handler", {
 
 gpii.ul.api.eastin.isoclasses.productCount.handler.handleRequest = function (that) {
     if (that.options.request.query.iso) {
-        var sanitisedIsoCode = that.options.request.query.replace(/\./g, "");
+        var sanitisedIsoCode = that.options.request.query.iso.replace(/\./g, "");
         that.viewReader.get({ key: sanitisedIsoCode });
     }
     else {
