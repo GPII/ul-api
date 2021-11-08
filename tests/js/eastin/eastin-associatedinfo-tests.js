@@ -17,7 +17,7 @@ gpii.tests.ul.api.eastin.associatedInfo.checkListResponse = function (response, 
     jqUnit.assertDeepEq(
         "The response body should be as expected",
         {
-            "apiVersion": 1.0,
+            apiVersion: "1.0",
             "data": {
                 "items": []
             }
@@ -75,13 +75,13 @@ fluid.defaults("gpii.tests.ul.api.eastin.associatedInfo.caseHolder", {
             type: "gpii.test.ul.api.request",
             options: {
                 method: "POST",
-                endpoint: "api/eastin/associatedinfo/"
+                endpoint: "api/eastin/v1.0/associatedinfo/"
             }
         },
         detailRequest: {
             type: "gpii.test.ul.api.request",
             options: {
-                endpoint: "api/eastin/associatedinfo/type/code"
+                endpoint: "api/eastin/v1.0/associatedinfo/type/code"
             }
         }
     }

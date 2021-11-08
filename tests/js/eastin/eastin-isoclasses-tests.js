@@ -66,19 +66,19 @@ fluid.defaults("gpii.tests.ul.api.eastin.isoClasses.caseHolder", {
         countRequest: {
             type: "gpii.test.ul.api.request",
             options: {
-                endpoint: "api/eastin/isoclasses/productcount?iso=\"223003\""
+                endpoint: "api/eastin/v1.0/isoclasses/productcount?iso=223003"
             }
         },
         countNoResultsRequest: {
             type: "gpii.test.ul.api.request",
             options: {
-                endpoint: "api/eastin/isoclasses/productcount?iso=\"000000\""
+                endpoint: "api/eastin/v1.0/isoclasses/productcount?iso=999999"
             }
         },
         countBadRequest: {
             type: "gpii.test.ul.api.request",
             options: {
-                endpoint: "api/eastin/isoclasses/productcount"
+                endpoint: "api/eastin/v1.0/isoclasses/productcount"
             }
         }
     }
@@ -94,11 +94,12 @@ gpii.tests.ul.api.eastin.isoClasses.checkProductCountResults = function (respons
 
             jqUnit.assertEquals("The response code should indicate a successful response.", 200, response.statusCode);
 
+            var recordCount = fluid.get(bodyAsJson, "data.productCount");
             if (hasResults) {
-                jqUnit.assertTrue("The record count should be a number greater than zero.", bodyAsJson > 0);
+                jqUnit.assertTrue("The record count should be a number greater than zero.", recordCount !== undefined && recordCount > 0);
             }
             else {
-                jqUnit.assertEquals("There should be no matching records.", 0, bodyAsJson);
+                jqUnit.assertEquals("There should be no matching records.", 0, recordCount);
             }
         }
         catch (error) {

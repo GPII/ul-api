@@ -3,8 +3,8 @@ var fluid = require("infusion");
 var gpii = fluid.registerNamespace("gpii");
 
 require("gpii-express");
-
 require("./transforms");
+
 
 // ProductDto GetProduct(string productCode)
 //
@@ -87,8 +87,18 @@ fluid.defaults("gpii.ul.api.eastin.product.handler", {
             }
         },
         "CommercialName": "name",
-        "OriginalDescription": "description",
-        "EnglishDescription": "description",
+        "OriginalDescription": {
+            transform: {
+                type: "gpii.ul.api.eastin.transforms.htmlToText",
+                inputPath: "description"
+            }
+        },
+        "EnglishDescription": {
+            transform: {
+                type: "gpii.ul.api.eastin.transforms.htmlToText",
+                inputPath: "description"
+            }
+        },
         "OriginalUrl": "sourceUrl",
         "EnglishUrl": "sourceUrl",
 
@@ -196,7 +206,10 @@ gpii.ul.api.eastin.product.handler.handleViewResponse = function (that, response
     var unifiedListingRecord = fluid.get(response, "rows.0.value");
     if (unifiedListingRecord) {
         var transformedRecord = fluid.model.transformWithRules(unifiedListingRecord, that.options.toProductDto);
-        that.sendResponse(200, JSON.stringify(transformedRecord, null, 2));
+        that.sendResponse(200, {
+            apiVersion: "1.0",
+            data: transformedRecord
+        });
     }
     else {
         that.sendResponse(404, "null");

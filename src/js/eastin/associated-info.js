@@ -10,7 +10,7 @@ fluid.defaults("gpii.ul.api.eastin.findSmallAssociatedInfos.handler", {
         handleRequest: {
             func: "{that}.sendResponse",
             args:     [200, {
-                "apiVersion": 1.0,
+                apiVersion: "1.0",
                 "data": {
                     "items": []
                 }

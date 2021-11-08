@@ -15,7 +15,7 @@ fluid.registerNamespace("gpii.tests.ul.api.eastin.actors.search");
 
 fluid.defaults("gpii.tests.ul.api.eastin.actors.search.request", {
     gradeNames: ["gpii.test.ul.api.request"],
-    endpoint: "api/eastin/actors",
+    endpoint: "api/eastin/v1.0/actors",
     method: "POST"
 });
 

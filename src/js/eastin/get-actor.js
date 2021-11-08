@@ -62,7 +62,7 @@ gpii.ul.api.eastin.getActor.handler.handleRequest = function (that) {
         }
         else {
             that.sendResponse(404, {
-                apiVersion: 1.0,
+                apiVersion: "1.0",
                 data: null
             });
         }
@@ -77,13 +77,13 @@ gpii.ul.api.eastin.getActor.handler.handleViewResponse = function (that, respons
     if (manufacturerCouchRecord) {
         var transformedManufactureRecord = fluid.model.transformWithRules(manufacturerCouchRecord, that.options.toActorDto);
         that.sendResponse(200, {
-            apiVersion: 1.0,
+            apiVersion: "1.0",
             data: transformedManufactureRecord
         });
     }
     else {
         that.sendResponse(404, {
-            apiVersion: 1.0,
+            apiVersion: "1.0",
             data: null
         });
     }

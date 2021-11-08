@@ -22,6 +22,7 @@
         "gpii-launcher": "1.0.0-dev.20190527T124956Z.9255cfa.GPII-2103",
         "gpii-location-bar-relay": "1.0.5",
         "gpii-sort": "1.0.0-dev.20170420T114825Z.804ac19",
+        "html-to-text": "^8.1.0",
         "infusion": "3.0.0-dev.20191009T141140Z.32c9263b4.FLUID-6148",
         "markdown-it": "11.0.0",
         "mkdirp": "1.0.4",

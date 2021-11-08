@@ -35,7 +35,7 @@ gpii.ul.api.eastin.findSmallActors.handler.handleRequest = function (that) {
     var actorType = fluid.get(params, "actorType");
     if (isoCodeCount || icfCodeCount || (actorType && actorType !== "companies")) {
         that.sendResponse(200, {
-            apiVersion: 1.0,
+            apiVersion: "1.0",
             data: { items: [] }
         });
     }
@@ -60,7 +60,7 @@ gpii.ul.api.eastin.findSmallActors.handler.handleViewResponse = function (that, 
             }
             catch (error) {
                 that.sendResponse(400, {
-                    apiVersion: 1.0,
+                    apiVersion: "1.0",
                     data: { items: [] },
                     error: "Bad insertDateMin value"
                 });
@@ -74,7 +74,7 @@ gpii.ul.api.eastin.findSmallActors.handler.handleViewResponse = function (that, 
             }
             catch (error) {
                 that.sendResponse(400, {
-                    apiVersion: 1.0,
+                    apiVersion: "1.0",
                     data: { items: [] },
                     error: "Bad insertDateMax value"
                 });
@@ -111,13 +111,13 @@ gpii.ul.api.eastin.findSmallActors.handler.handleViewResponse = function (that, 
         });
 
         that.sendResponse(200, {
-            apiVersion: 1.0,
+            apiVersion: "1.0",
             data: { items: filteredRecords }
         });
     }
     else {
         that.sendResponse(200, {
-            apiVersion: 1.0,
+            apiVersion: "1.0",
             data: { items: transformedActorRecords }
         });
     }

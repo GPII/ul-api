@@ -9,7 +9,7 @@ require("./products");
 
 fluid.defaults("gpii.ul.api.eastin", {
     gradeNames: ["gpii.express.router"],
-    path: "/eastin",
+    path: "/eastin/v1.0",
     components: {
         // Batch methods
         isoclasses: {

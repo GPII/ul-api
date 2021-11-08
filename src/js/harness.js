@@ -107,6 +107,7 @@ fluid.defaults("gpii.ul.api.harness", {
             options: {
                 port :        "{gpii.ul.api.harness}.options.ports.api",
                 templateDirs: "{gpii.ul.api.harness}.options.templateDirs",
+                gradeNames: ["fluid.express"],
                 components: {
                     api: {
                         type: "gpii.ul.api",

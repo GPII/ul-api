@@ -68,19 +68,19 @@ fluid.defaults("gpii.tests.ul.api.eastin.products.caseHolder", {
         productRequest: {
             type: "gpii.test.ul.api.request",
             options: {
-                endpoint: "api/eastin/products/1421059432806-826608318"
+                endpoint: "api/eastin/v1.0/products/1421059432806-826608318"
             }
         },
         missingProductCodeRequest: {
             type: "gpii.test.ul.api.request",
             options: {
-                endpoint: "api/eastin/products"
+                endpoint: "api/eastin/v1.0/products"
             }
         },
         bogusProductCodeRequest: {
             type: "gpii.test.ul.api.request",
             options: {
-                endpoint: "api/eastin/products/nope-nope-nope"
+                endpoint: "api/eastin/v1.0/products/nope-nope-nope"
             }
         }
     }
@@ -95,8 +95,12 @@ gpii.tests.ul.api.eastin.products.checkResults = function (response, body, isErr
 
         try {
             var bodyAsJson = JSON.parse(body);
+            var record = fluid.get(bodyAsJson, "data");
 
-            gpii.test.ul.api.eastin.checkRequiredFields(bodyAsJson);
+            gpii.test.ul.api.eastin.checkRequiredFields(record);
+
+            var description = fluid.get(record, "OriginalDescription");
+            jqUnit.assertTrue("There should be no HTML in the description.", description.indexOf("<br") === -1);
         }
         catch (error) {
             jqUnit.fail("The response body should have been a JSON-parseable string.");

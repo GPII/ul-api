@@ -8,7 +8,7 @@ require("./product");
 require("./transforms");
 
 // FindSmallProducts(),
-// POST /eastin/products
+// POST /eastin/v1.0/products
 // Implement after getProduct so we can reuse parts of the transform.
 //
 // Input parameters:
@@ -131,7 +131,7 @@ gpii.ul.api.eastin.products.find.handler.handleViewResponse = function (that, re
     var filteredItems = params ? items.filter(gpii.ul.api.eastin.products.find.handler.generateFilterFunction(that, params)) : items;
 
     that.sendResponse(200, {
-        apiVersion: 1.0,
+        apiVersion: "1.0",
         data: {
             items: filteredItems
         }

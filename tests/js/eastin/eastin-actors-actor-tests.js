@@ -66,19 +66,19 @@ fluid.defaults("gpii.tests.ul.api.eastin.actors.actor.caseHolder", {
         actorRequest: {
             type: "gpii.test.ul.api.request",
             options: {
-                endpoint: "api/eastin/actors/companies/1234"
+                endpoint: "api/eastin/v1.0/actors/companies/1234"
             }
         },
         wrongTypeRequest: {
             type: "gpii.test.ul.api.request",
             options: {
-                endpoint: "api/eastin/actors/bad-type/1234"
+                endpoint: "api/eastin/v1.0/actors/bad-type/1234"
             }
         },
         bogusActorCodeRequest: {
             type: "gpii.test.ul.api.request",
             options: {
-                endpoint: "api/eastin/actors/companies/nope-nope-nope"
+                endpoint: "api/eastin/v1.0/actors/companies/nope-nope-nope"
             }
         }
     }

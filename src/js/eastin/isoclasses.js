@@ -5,7 +5,7 @@ var gpii = fluid.registerNamespace("gpii");
 require("gpii-express");
 
 // GetIsoClassProductCount().
-// GET /eastin/isoclasses/productcount?iso=<iso_code_value>
+// GET /eastin/v1.0/isoclasses/productcount?iso=<iso_code_value>
 // params:
 // - iso - A string representing the ISO Code to search for.
 //
@@ -56,8 +56,7 @@ fluid.defaults("gpii.ul.api.eastin.isoclasses.productCount.handler", {
 
 gpii.ul.api.eastin.isoclasses.productCount.handler.handleRequest = function (that) {
     if (that.options.request.query.iso) {
-        var sanitisedIsoCode = that.options.request.query.iso.replace(/\./g, "");
-        that.viewReader.get({ key: sanitisedIsoCode });
+        that.viewReader.get({ key: that.options.request.query.iso });
     }
     else {
         that.options.next({ isError: true, statusCode: 400, message: "You must supply an 'iso' query variable to use this endpoint."});
@@ -66,7 +65,13 @@ gpii.ul.api.eastin.isoclasses.productCount.handler.handleRequest = function (tha
 
 gpii.ul.api.eastin.isoclasses.productCount.handler.handleViewResponse = function (that, response) {
     var numRows = fluid.get(response, "rows.length") || 0;
-    that.sendResponse(200, numRows.toString());
+    that.sendResponse(200, {
+        apiVersion: "1.0",
+        data: {
+            productCount: numRows
+        },
+        error: null
+    });
 };
 
 fluid.defaults("gpii.ul.api.eastin.isoclasses.productCount", {
