@@ -1,0 +1,164 @@
+{
+    "~": {
+        "name": "Individual Contribution",
+        "view": [
+            "~",
+            "reviewers"
+        ]
+    },
+    "ATAust": {
+        "name": "ATAust",
+        "view": [
+            "*"
+        ],
+        "edit": [
+            "importer"
+        ]
+    },
+    "AbleData": {
+        "name": "AbleData",
+        "view": [
+            "*"
+        ],
+        "edit": [
+            "importer"
+        ]
+    },
+    "AZARIM": {
+        "name": "Azarim",
+        "view": [
+            "*"
+        ],
+        "edit": [
+            "importer"
+        ]
+    },
+    "Dlf data": {
+        "name": "Dlf data",
+        "view": [
+            "*"
+        ],
+        "edit": [
+            "importer"
+        ]
+    },
+    "GARI": {
+        "name": "GARI",
+        "view": [
+            "gari",
+            "importer",
+            "reviewers"
+        ],
+        "edit": [
+            "importer",
+            "gari"
+        ]
+    },
+    "EASTIN Admin": {
+        "name": "EASTIN Admin",
+        "view": [
+            "*"
+        ],
+        "edit": [
+            "importer"
+        ]
+    },
+    "Handicat": {
+        "name": "Handicat",
+        "view": [
+            "*"
+        ],
+        "edit": [
+            "importer"
+        ]
+    },
+    "Hjælpemiddelbasen": {
+        "name": "Hjælpemiddelbasen",
+        "view": [
+            "*"
+        ],
+        "edit": [
+            "importer"
+        ]
+    },
+    "Hulpmiddelenwijzer": {
+        "name": "Hulpmiddelenwijzer",
+        "view": [
+            "reviewers",
+            "importer"
+        ],
+        "edit": [
+            "importer"
+        ]
+    },
+    "Oaeg": {
+        "name": "Oaeg",
+        "view": [
+            "reviewers",
+            "importer"
+        ],
+        "edit": [
+            "importer"
+        ]
+    },
+    "Rehadat": {
+        "name": "Rehadat",
+        "view": [
+            "*"
+        ],
+        "edit": [
+            "importer"
+        ]
+    },
+    "sai": {
+        "name": "Unified Listing",
+        "view": [
+            "reviewers",
+            "importer",
+            "sai"
+        ],
+        "edit": [
+            "importer",
+            "sai"
+        ]
+    },
+    "Siva": {
+        "name": "Siva",
+        "view": [
+            "*"
+        ],
+        "edit": [
+            "importer"
+        ]
+    },
+    "SolutionsOntologyFinal": {
+        "name": "Solutions Ontology",
+        "view": [
+            "reviewers",
+            "sat"
+        ],
+        "edit": [
+            "importer",
+            "sat"
+        ]
+    },
+    "Vlibank": {
+        "name": "Vlibank",
+        "view": [
+            "*"
+        ],
+        "edit": [
+            "importer"
+        ]
+    },
+    "unified": {
+        "name": "Unified Listing Federation Hub",
+        "view": [
+            "*"
+        ],
+        "edit": [
+            "reviewers",
+            "importer"
+        ]
+    }
+}
