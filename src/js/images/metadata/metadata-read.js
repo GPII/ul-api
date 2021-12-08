@@ -73,7 +73,7 @@ fluid.defaults("gpii.ul.api.images.metadata.read.dataSource", {
         },
         "onError.handleError": {
             func: "gpii.ul.api.images.metadata.read.handler.handleError",
-            args: [ "{that}", "{arguments}.0."] // errorResponse
+            args: [ "{that}", "{arguments}.0"] // errorResponse
         }
     }
 });
@@ -106,12 +106,14 @@ gpii.ul.api.images.metadata.read.handler.handleRequest = function (that) {
 };
 
 gpii.ul.api.images.metadata.read.handler.handleError = function (that, response) {
-    var statusCode = response.statusCode || 500;
+    var statusCode = fluid.get(response, "statusCode") || 500;
     if (statusCode === 404) {
+        // TODO: Both of these messages point to options that don't exist.
         that.sendResponse( statusCode, { isError: true, message: that.options.messages.notFound});
     }
     else {
-        that.sendResponse( statusCode, response);
+        // TODO: Both of these messages point to options that don't exist.
+        that.sendResponse( statusCode, response || that.options.messages.noResponse);
     }
 };
 
@@ -121,7 +123,8 @@ fluid.defaults("gpii.ul.api.images.metadata.read.handler", {
         requestContentToValidate: "{gpii.ul.api.images.metadata.read.base}.options.rules.requestContentToValidate"
     },
     messages: {
-        notFound: "The image ID you have supplied does not correspond to an existing metadata record."
+        notFound: "The image ID you have supplied does not correspond to an existing metadata record.",
+        noResponse: "The image retrieval failed without a response from the server."
     },
     invokers: {
         handleRequest: {
