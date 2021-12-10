@@ -36,6 +36,9 @@ fluid.defaults("gpii.tests.ul.api.harness", {
     setLogging:   true,
     originalsDir: "@expand:gpii.tests.ul.api.harness.getOriginalsPath({that})",
     cacheDir:     "@expand:gpii.tests.ul.api.harness.getCachePath({that})",
+    ports: {
+        couch: 25984
+    },
     components: {
         provisioner: {
             type: "gpii.tests.ul.api.provisioner",

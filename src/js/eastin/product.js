@@ -113,9 +113,6 @@ fluid.defaults("gpii.ul.api.eastin.product.handler", {
         "EnglishUrl": "sourceUrl",
 
 
-        // TODO: Make two async GETs and process only when both are complete.
-        // Hit https://api.ul.gpii.net/api/images/metadata/:uid/unified , which returns :image_id
-
         // Couldn't find any examples of these being used, so I'm omitting them.
         //
         //   string OriginalDownloadUrl: the URL of the download Web page in the original language on the original EASTIN
