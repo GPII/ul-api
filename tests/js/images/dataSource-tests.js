@@ -2,17 +2,26 @@
 "use strict";
 var fluid  = require("infusion");
 var gpii   = fluid.registerNamespace("gpii");
-fluid.loadTestingSupport();
+
+require("../../../index");
+
+gpii.ul.api.loadTestingSupport();
 
 var jqUnit = require("node-jqunit");
 
-fluid.require("%ul-api/src/js/server/view-read-dataSource");
+fluid.require("%ul-api/src/js/images/view-read-dataSource");
 
 require("../lib/test-harness");
 
 fluid.defaults("gpii.tests.ul.api.images.dataSource.dataSource", {
     gradeNames: ["gpii.ul.images.dataSources.couch"],
-    baseUrl:    "{harness}.options.urls.imageDb",
+    envOption: "{testEnvironment}.options",
+    baseUrl: {
+        expander: {
+            funcName: "fluid.stringTemplate",
+            args: ["http://localhost:%port/images", { port: "{gpii.tests.ul.api.harness}.options.ports.couch"}]
+        }
+    },
     events: {
         onFinalResult: null
     },
@@ -45,12 +54,13 @@ gpii.test.ul.api.images.dataSource.caseHolder.checkBulkRecords = function (messa
 //};
 
 fluid.defaults("gpii.test.ul.api.images.dataSource.caseHolder", {
-    gradeNames: ["fluid.test.testCaseHolder"],
-    modules: [{
+    gradeNames: ["gpii.test.ul.api.caseHolder"],
+    rawModules: [{
         name: "Testing our dataSource...",
         tests: [
             {
                 name: "Test retrieving and processing a single record...",
+                type: "test",
                 sequence: [
                     {
                         func: "{singleRecordSource}.get",
@@ -60,18 +70,12 @@ fluid.defaults("gpii.test.ul.api.images.dataSource.caseHolder", {
                         event:    "{singleRecordSource}.events.onFinalResult",
                         listener: "jqUnit.assertDeepEq",
                         args:     ["We should receive a single record with no couch-isms...", "{that}.options.expected.singleRecordSource", "{arguments}.0"]
-                    },
-                    {
-                        func: "{gpii.tests.ul.api.images.harness}.events.stopFixtures.fire"
-                    },
-                    {
-                        event:    "{testEnvironment}.events.onFixturesStopped",
-                        listener: "fluid.identity"
                     }
                 ]
             },
             {
                 name: "Test using a complex key structure with a view...",
+                type: "test",
                 sequence: [
                     {
                         func: "{viewSource}.get",
@@ -81,37 +85,24 @@ fluid.defaults("gpii.test.ul.api.images.dataSource.caseHolder", {
                         event:    "{viewSource}.events.onFinalResult",
                         listener: "gpii.test.ul.api.images.dataSource.caseHolder.checkBulkRecords",
                         args:     ["We should receive multiple records with no couch-isms...", "{arguments}.0"] // message, records
-                    },
-                    {
-                        func: "{gpii.tests.ul.api.images.harness}.events.stopFixtures.fire"
-                    },
-                    {
-                        event:    "{testEnvironment}.events.onFixturesStopped",
-                        listener: "fluid.identity"
-                    }
-                ]
-            },
-            {
-                name: "Test handling of 404 responses...",
-                sequence: [
-                    {
-                        func: "{fourOhFourSource}.get",
-                        args: []
-                    },
-                    {
-                        event:    "{fourOhFourSource}.events.onError",
-                        listener: "gpii.test.ul.api.images.dataSource.caseHolder.checkFourOhFour",
-                        args:     ["{arguments}.0", "{fourOhFourSource}"] // response, dataSource
-                    },
-                    {
-                        func: "{gpii.tests.ul.api.images.harness}.events.stopFixtures.fire"
-                    },
-                    {
-                        event:    "{testEnvironment}.events.onFixturesStopped",
-                        listener: "fluid.identity"
                     }
                 ]
             }
+            // {
+            //     name: "Test handling of 404 responses...",
+            //     type: "test",
+            //     sequence: [
+            //         {
+            //             func: "{fourOhFourSource}.get",
+            //             args: []
+            //         },
+            //         {
+            //             event:    "{fourOhFourSource}.events.onError",
+            //             listener: "gpii.test.ul.api.images.dataSource.caseHolder.checkFourOhFour",
+            //             args:     ["{arguments}.0", "{fourOhFourSource}"] // response, dataSource
+            //         }
+            //     ]
+            // }
         ]
     }],
     expected: {
@@ -154,23 +145,23 @@ fluid.defaults("gpii.test.ul.api.images.dataSource.caseHolder", {
                     transformRecord: gpii.ul.images.dataSources.couch.rules.transformRecord.metadata
                 }
             }
-        },
-        // This is not really testing anything new, only providing an example of how to get the status code from a kettle.datasource.URL
-        fourOhFourSource: {
-            type: "gpii.tests.ul.api.images.dataSource.dataSource",
-            options: {
-                endpoint: "/four/oh/four",
-                rules: {
-                    getRecords: gpii.ul.images.dataSources.couch.rules.getRecords.single,
-                    transformRecord: gpii.ul.images.dataSources.couch.rules.transformRecord.metadata
-                }
-            }
         }
+        // This is not really testing anything new, only providing an example of how to get the status code from a kettle.datasource.URL
+        // fourOhFourSource: {
+        //     type: "gpii.tests.ul.api.images.dataSource.dataSource",
+        //     options: {
+        //         endpoint: "/four/oh/four",
+        //         rules: {
+        //             getRecords: gpii.ul.images.dataSources.couch.rules.getRecords.single,
+        //             transformRecord: gpii.ul.images.dataSources.couch.rules.transformRecord.metadata
+        //         }
+        //     }
+        // }
     }
 });
 
 fluid.defaults("gpii.test.ul.api.images.dataSource.testEnvironment", {
-    gradeNames: ["fluid.test.testEnvironment", "gpii.tests.ul.api.images.harness"],
+    gradeNames: ["gpii.test.ul.api.testEnvironment"],
     components: {
         caseHolder: {
             type: "gpii.test.ul.api.images.dataSource.caseHolder"
