@@ -425,6 +425,7 @@
             "status": "active",
             "name": "Jaws For Windows",
             "description": "Screen reader software.  Comprises: supports standard Windows office applications, Internet Explorer, Firefox, MSN Messenger, and Adobe Acrobat Reader, Lotus Symphony/Notes and others; outputs to refreshable Braille displays; multilingual synthesizer; supports Internet Explorer including links lists, frames lists, forms mode, reading HTML tables and graphic labels; supports dual monitors; interactive talking installation and basic training tutorial. Options include: standard edition for 32-bit or 64-bit versions of Windows 7 Home Premium, Windows Vista Home Premium, Windows Vista Home Basic and 32-bit Windows XP Home operating systems; professional edition for all 32-bit or 64-bit versions of Windows 7, Windows Vista, and Windows Server 2008 and 32-bit versions of Windows XP and Windows Server 2003. \n  Note: voice synthesizer requires a sound card compatible with the users version of Windows.<br /><br />Price from (&pound;): 659<br /><br /><br /><br />Software<br />Adjust voice pitch: Standard <br />Adjust voice speed: Standard <br />Braille output: Standard <br />CD-Rom; USB Pen; Download: CD-Rom <br />Pronunciation correction: Standard <br />Read text with mouse over: Feature not available <br />Screen Zoom: Feature not available <br />Talking installation: Standard <br />Windows operating system: XP, Vista and 7",
+            "sourceUrl": "https://ul.gpii.net/content/jaws",
             "manufacturer": {
                 "name": "Freedom Scientific",
                 "id": 1234,
@@ -493,6 +494,8 @@
             "status": "active",
             "name": "NVDA",
             "description": "NonVisual Desktop Access (NVDA) is a free and open-source screen reader for the Windows Operating System, enabling blind and vision impaired people to use their computers for no more cost than the computer and Operating System itself.",
+            "sourceUrl": "https://ul.gpii.net/content/nvda-screenreader",
+
             "manufacturer": {
                 "name": "NVAccess",
                 "country": "UNKNOWN",
@@ -674,6 +677,7 @@
                 "email": "steve@fullmeasure.co.uk",
                 "url": "http://fullmeasure.co.uk/"
             },
+            "sourceUrl": "https://ul.gpii.net/content/maavis",
             "isCodes": [{
                 "Code": "22.33.12",
                 "Name": "Operating software"
@@ -843,6 +847,7 @@
                 "email": "u.s.info@texthelp.com",
                 "url": "http://www.texthelp.com"
             },
+            "sourceUrl": "https://ul.gpii.net/content/readwrite",
             "isoCodes": [{
                 "Code": "22.30.03",
                 "Name": "Reading materials with audible output"
@@ -1959,6 +1964,7 @@
             "status": "active",
             "name": "Supernova Reader Magnifier",
             "description": "Screen magnification software with speech. Comprises: output to speech to read documents, web pages, menus or button prompts and talk as the user types; user can choice to list links, headings or frames on websites; choice of magnification style such as split screen, whole screen, lens and window; magnified objects and text are smoothed to remove pixelation; magnification from initial login; multiple focus highlighting options - cursor, mouse pointer, line, focus; automatic tracking of mouse and keyboard presses; high contrast and custom colour schemes; multi language support, switch magnifier interface to choice of over 20 languages at any time; automatic software updates via the Internet; compatible with a range of digital CCTVs.<br /><br />Price from (&pound;): 320<br /><br /><br /><br />Software<br />CD-Rom; USB Pen; Download: CD-Rom <br />Read text with mouse over: Standard <br />Screen magnification range: 2-60 x<br />Text/font smoothing: Standard <br />Windows: Standard <br />Windows operating system: XP, Vista and 7",
+            "sourceUrl": "https://ul.gpii.net/content/supernova-magnifier-various-versions",
             "manufacturer": {
                 "name": "Dolphin Computer Access Ltd"
             },
