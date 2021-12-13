@@ -121,8 +121,11 @@ gpii.ul.api.eastin.products.find.handler.generateFilterFunction = function (that
 };
 
 gpii.ul.api.eastin.products.find.handler.handleViewResponse = function (that, response) {
+    // Filter out any records that lack a Source URL
+    var filteredRows = response.rows.filter(function (singleValue) { return singleValue.value.sourceUrl; });
+
     // Transform the results.
-    var items = fluid.transform(response.rows, function (singleCouchDbRecord) {
+    var items = fluid.transform(filteredRows, function (singleCouchDbRecord) {
         return fluid.model.transformWithRules(singleCouchDbRecord.value, that.options.toSmallProductDto);
     });
 
