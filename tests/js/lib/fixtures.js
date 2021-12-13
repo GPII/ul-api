@@ -70,7 +70,10 @@ fluid.defaults("gpii.test.ul.api.testEnvironment", {
         images: {
             data: [
                 "%ul-api/tests/data/galleries.json",
-                "%ul-api/tests/data/images.json"
+                "%ul-api/tests/data/images.json",
+                "%ul-api/src/views/images/gallery.json",
+                "%ul-api/src/views/images/md5.json",
+                "%ul-api/src/views/images/metadata.json"
             ]
         }
     },

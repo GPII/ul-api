@@ -55,9 +55,7 @@ gpii.ul.api.images.file.read.handler.checkQueryParams = function (that) {
                     try {
                         var tileSize = parseInt(userOptions.width, 10);
                         sharp(originalFilePath)
-                            .background("white") // Ideally we would use transparent, but for image formats (JPG) that lack transparency, this becomes black.
-                            .resize(tileSize, tileSize) // Create a square tile
-                            .embed() // embed the original image within the square tile rather than changing its aspect ratio.
+                            .resize({ width: tileSize, height: tileSize, background: { r: 255, g: 255, b: 255, alpha: 1}}) // Create a square tile with a white background.
                             .toFile(resizedFilePath, function (error) {
                                 if (error) {
                                     that.sendResponse(500, { isError: true, message: that.options.messages.saveError });

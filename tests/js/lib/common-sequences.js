@@ -5,8 +5,6 @@ var gpii   = fluid.registerNamespace("gpii");
 
 var jqUnit = require("node-jqunit");
 
-require("./request");
-
 // A "marker" grade to allow a sequence to expose a single cookie jar to all requests within sequences and elements.
 fluid.defaults("gpii.tests.ul.api.images.needsCookieJar", {
     gradeNames: ["fluid.component"]

@@ -18,11 +18,8 @@ gpii.tests.ul.api.provisioner.provision = function (that) {
         var wrappedPromise = fluid.promise();
         promises.push(wrappedPromise);
         var mkdirRawPromise = mkdirp(destPath);
-        mkdirRawPromise.then(wrappedPromise.resolve, function (err) {
-            if (err) {
-                wrappedPromise.reject(err);
-            }
-            else {
+        mkdirRawPromise.then(
+            function () {
                 fluid.log("Copying test data from '", sourcePath, "' to '", destPath, "'.");
                 // Copy our pregenerated test data in place
                 ncp(sourcePath, destPath, function (err) {
@@ -33,8 +30,11 @@ gpii.tests.ul.api.provisioner.provision = function (that) {
                         wrappedPromise.resolve();
                     }
                 });
+            },
+            function (err) {
+                wrappedPromise.reject(err);
             }
-        });
+        );
     });
 
     var sequence = fluid.promise.sequence(promises);

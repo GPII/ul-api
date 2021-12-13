@@ -72,6 +72,16 @@ fluid.registerNamespace("gpii.ul.api.eastin.product.transforms");
 
 fluid.defaults("gpii.ul.api.eastin.product.handler", {
     gradeNames: ["gpii.express.handler"],
+    templates: {
+        imageUrl: "https://ul.api.gpii.net/api/images/file/%uid/unified/450/%image_id",
+        thumbnailImageUrl: "https://ul.api.gpii.net/api/images/file/%uid/unified/90/%image_id"
+    },
+    members: {
+        unifiedRecordPromise: "@expand:fluid.promise()",
+        imageRecordPromise: "@expand:fluid.promise()",
+        unifiedRecord: false,
+        imageMetadata: {}
+    },
     toProductDto: {
         "ProductCode": "sid",
         "IsoCodePrimary": {
@@ -101,6 +111,7 @@ fluid.defaults("gpii.ul.api.eastin.product.handler", {
         },
         "OriginalUrl": "sourceUrl",
         "EnglishUrl": "sourceUrl",
+
 
         // Couldn't find any examples of these being used, so I'm omitting them.
         //
@@ -134,21 +145,22 @@ fluid.defaults("gpii.ul.api.eastin.product.handler", {
         "ManufacturerCountry": "manufacturer.country",
         "ManufacturerPhone": "manufacturer.phone",
         "ManufacturerEmail": "manufacturer.email",
-        "ManufacturerWebSiteUrl": "manufacturer.url"
+        "ManufacturerWebSiteUrl": "manufacturer.url",
 
         //   string ManufacturerFax: the fax of the product’s manufacturer;
         //   string ManufacturerSkype: the Skype account name of the product’s manufacturer;
         //   string[] ManufacturerSocialNetworkUrls: an array of URLs linking to the product’s manufacturer page
         //     inside the main social networks (for example Facebook, Twitter, LinkedIn, etc.);
+        "ThumbnailImageUrl": "ThumbnailImageUrl",
 
-        // TODO: Pull these from the image API if required.
-        //
         //   string ThumbnailImageUrl: the URL of the small format image of the product (used when displaying list
         //     of products in the EASTIN portal). The URL must be accessible on the Web by the end user’s browser.
         //     Picture dimensions should be: width 90 px, height 90 px.
-        //   string ImageUrl: the URL of the big format image of the product (used when displaying the detail view of the
-        //     product in the EASTIN portal). The URL must be accessible on the Web by the end user’s browser. Picture
-        //     dimensions should be: width 450 px, height 450 px.
+        "ImageUrl": "ImageUrl"
+
+        //   string ImageUrl: the URL of the big format image of the product (used when displaying the detail view of
+        //     the product in the EASTIN portal). The URL must be accessible on the Web by the end user’s browser.
+        //     Picture dimensions should be: width 450 px, height 450 px.
     },
     invokers: {
         handleRequest: {
@@ -159,13 +171,17 @@ fluid.defaults("gpii.ul.api.eastin.product.handler", {
             func: "{that}.options.next",
             args: [{ isError: true, statusCode: 500, message: "{arguments}.0"}] // error
         },
-        handleViewResponse: {
-            funcName: "gpii.ul.api.eastin.product.handler.handleViewResponse",
+        handleRecordViewResponse: {
+            funcName: "gpii.ul.api.eastin.product.handler.handleRecordViewResponse",
+            args: ["{that}","{arguments}.0"] // response
+        },
+        handleImageApiResponse: {
+            funcName: "gpii.ul.api.eastin.product.handler.handleImageApiResponse",
             args: ["{that}","{arguments}.0"] // response
         }
     },
     components: {
-        viewReader: {
+        recordViewReader: {
             type: "kettle.dataSource.URL",
             options: {
                 url: {
@@ -177,13 +193,37 @@ fluid.defaults("gpii.ul.api.eastin.product.handler", {
                 termMap: { "key": "%key" },
                 listeners: {
                     "onRead.handleViewResponse": {
-                        func: "{gpii.ul.api.eastin.product.handler}.handleViewResponse",
+                        func: "{gpii.ul.api.eastin.product.handler}.handleRecordViewResponse",
                         args: ["{arguments}.0"] // couchResponse
                     },
                     // Report back to the user on failure.
                     "onError.sendResponse": {
                         func: "{gpii.express.handler}.sendResponse",
                         args: [ 500, { message: "{arguments}.0", url: "{that}.options.url" }] // statusCode, body
+                    }
+                }
+            }
+        },
+        imageRecordReader: {
+            type: "kettle.dataSource.URL",
+            options: {
+                url: {
+                    expander: {
+                        funcName: "fluid.stringTemplate",
+                        // http://localhost:3367/api/images/metadata/1421059432806-826608318/unified
+                        args: ["%baseUrlapi/images/metadata/%uid/unified", { baseUrl: "{gpii.ul.api}.options.urls.api" }]
+                    }
+                },
+                termMap: {"uid": "%uid"},
+                listeners: {
+                    "onRead.handleViewResponse": {
+                        func: "{gpii.ul.api.eastin.product.handler}.handleImageApiResponse",
+                        args: ["{arguments}.0"] // apiResponse
+                    },
+                    // Allow processing to continue if the image retrieval fails.
+                    "onError.resolvePromise": {
+                        func: "{gpii.ul.api.eastin.product.handler}.imageRecordPromise.resolve",
+                        args: ["{arguments}.0"]
                     }
                 }
             }
@@ -195,20 +235,49 @@ gpii.ul.api.eastin.product.handler.handleRequest = function (that) {
     var productCode = that.options.request.params.productCode;
     if (productCode && productCode.length) {
         var params = ["unified", productCode];
-        that.viewReader.get({ key: JSON.stringify(params)});
+
+        that.recordViewReader.get({ key: JSON.stringify(params)});
+        that.imageRecordReader.get({ uid: productCode});
+
+        var sequence = fluid.promise.sequence([that.imageRecordPromise, that.unifiedRecordPromise]);
+        sequence.then(
+            function () { gpii.ul.api.eastin.product.handler.combineAndSendResults(that); },
+            function () { that.options.next({ isError: true, statusCode: 500, message: "Error retrieving record."}); }
+        );
     }
     else {
         that.options.next({ isError: true, statusCode: 400, message: "You must supply a product code as part of the URL to use this endpoint."});
     }
 };
 
-gpii.ul.api.eastin.product.handler.handleViewResponse = function (that, response) {
+gpii.ul.api.eastin.product.handler.handleRecordViewResponse = function (that, response) {
     var unifiedListingRecord = fluid.get(response, "rows.0.value");
     if (unifiedListingRecord) {
         var transformedRecord = fluid.model.transformWithRules(unifiedListingRecord, that.options.toProductDto);
+        that.unifiedRecord = transformedRecord;
+    }
+    that.unifiedRecordPromise.resolve();
+};
+
+gpii.ul.api.eastin.product.handler.handleImageApiResponse = function (that, response) {
+    if (response.length) {
+        var firstImage = response[0];
+        var imageUrl = fluid.stringTemplate(that.options.templates.imageUrl, { "uid": that.options.request.params.productCode, "image_id": firstImage.image_id });
+        var thumbnailImageUrl = fluid.stringTemplate(that.options.templates.imageUrl, { "uid": that.options.request.params.productCode, "image_id": firstImage.image_id });
+        that.imageMetadata = {
+            "ImageUrl": imageUrl,
+            "ThumbnailImageUrl": thumbnailImageUrl
+        };
+    }
+    that.imageRecordPromise.resolve();
+};
+
+gpii.ul.api.eastin.product.handler.combineAndSendResults = function (that) {
+    if (that.unifiedRecord) {
+        var combinedRecord = fluid.extend({}, that.unifiedRecord, that.imageMetadata);
         that.sendResponse(200, {
             apiVersion: "1.0",
-            data: transformedRecord
+            data: combinedRecord
         });
     }
     else {
